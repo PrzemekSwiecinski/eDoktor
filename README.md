@@ -9,6 +9,8 @@
 - możliwość oceniania lekarzy;
 - kilka innych mniej lub bardziej użytecznych podstron (łącznie 14 widoków).
 
+Data wykonania projektu: 01.01.2024 - 04.02.2024.
+
 (EN) An application for scheduling appointments with specialists online. Written in React/TypeScript (frontend) and PHP (backend) with a relational SQL database, the application features:
 - login for users, doctors, and admins;
 - the ability to schedule appointments for specific times;
@@ -17,3 +19,5 @@
 - a doctor panel with appointments;
 - the ability to rate doctors;
 - several other subpages (14 views in total).
+
+Project completion date: 01.01.2024 - 04.02.2024.
