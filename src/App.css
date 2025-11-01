@@ -1,0 +1,34 @@
+
+.App {
+  text-align: center;
+  background-color: #ffffff;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.title {
+  margin: 0;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
