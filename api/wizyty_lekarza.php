@@ -26,7 +26,6 @@ $data = json_decode(file_get_contents('php://input'), true);
 $authToken = isset($data['authToken']) ? $data['authToken'] : null;
 
 if ($authToken !== null) {
-    // Pobranie id_lekarza na podstawie tokenu autoryzacyjnego lekarza
     $sqlDoctorId = "SELECT id_lekarza FROM lekarze WHERE token_sesji = '$authToken'";
     $resultDoctorId = $conn->query($sqlDoctorId);
 
@@ -34,7 +33,6 @@ if ($authToken !== null) {
         $doctorData = $resultDoctorId->fetch_assoc();
         $doctorId = $doctorData['id_lekarza'];
 
-        // Pobranie wizyt lekarza na podstawie id_lekarza
         $sqlVisits = "SELECT w.*, u.imie AS imie_uzytkownika, u.nazwisko AS nazwisko_uzytkownika
                       FROM wizyty w
                       INNER JOIN uzytkownicy u ON w.id_uzytkownika = u.id_uzytkownika
@@ -42,11 +40,10 @@ if ($authToken !== null) {
 
         $resultVisits = $conn->query($sqlVisits);
 
-        $visitsData = array(); // Inicjalizacja tablicy na dane wizyt
+        $visitsData = array();
 
         if ($resultVisits->num_rows > 0) {
             while ($row = $resultVisits->fetch_assoc()) {
-                // Dodanie danych wizyty do tablicy
                 $visit = array(
                     'id_wizyty' => $row['id_wizyty'],
                     'data' => $row['data'],
@@ -58,7 +55,6 @@ if ($authToken !== null) {
                 );
                 $visitsData[] = $visit;
             }
-            // Zwrócenie danych w formacie JSON
             echo json_encode($visitsData);
         } else {
             http_response_code(404);
