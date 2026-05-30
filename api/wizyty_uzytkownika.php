@@ -26,7 +26,6 @@ $data = json_decode(file_get_contents('php://input'), true);
 $authToken = isset($data['authToken']) ? $data['authToken'] : null;
 
 if ($authToken !== null) {
-    // Pobranie id_uzytkownika na podstawie tokena sesji
     $sqlUserId = "SELECT id_uzytkownika FROM uzytkownicy WHERE token_sesji = '$authToken'";
     $resultUserId = $conn->query($sqlUserId);
 
@@ -34,7 +33,6 @@ if ($authToken !== null) {
         $userData = $resultUserId->fetch_assoc();
         $userId = $userData['id_uzytkownika'];
 
-        // Pobranie wizyt użytkownika na podstawie id_uzytkownika
         $sqlVisits = "SELECT w.*, l.imie AS imie_lekarza, l.nazwisko AS nazwisko_lekarza
                       FROM wizyty w
                       INNER JOIN lekarze l ON w.id_lekarza = l.id_lekarza
