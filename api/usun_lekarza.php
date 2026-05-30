@@ -21,13 +21,11 @@ if ($conn->connect_error) {
     die(json_encode(['error' => 'Błąd połączenia z bazą danych']));
 }
 
-// Pobranie danych przesłanych z pliku React
 $data = json_decode(file_get_contents('php://input'), true);
 
 $id = isset($data['id']) ? $data['id'] : null;
 
 if ($id !== null) {
-    // Usuwanie lekarza z bazy danych
     $sql_delete = "DELETE FROM lekarze WHERE id_lekarza='$id'";
 
     if ($conn->query($sql_delete) === TRUE) {
