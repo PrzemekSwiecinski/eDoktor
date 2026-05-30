@@ -74,7 +74,6 @@ function DoctorView() {
       });
   
       if (response.ok) {
-        // Usuń token z localStorage po wylogowaniu
         localStorage.removeItem("authToken");
         setAuthToken(null);
         setIsLoggedOut(true);
