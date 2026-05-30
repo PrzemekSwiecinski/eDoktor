@@ -114,7 +114,6 @@ function MainPage() {
       });
 
       if (response.ok) {
-        // Usuń token z localStorage po wylogowaniu
         localStorage.removeItem("authToken");
         setAuthToken(null);
         setIsLoggedOut(true);
@@ -136,16 +135,13 @@ function MainPage() {
 
   const handleAppointment = async () => {
     try {
-      // Pobierz token sesji pacjenta
       const authToken = localStorage.getItem("authToken");
 
-      // Sprawdź, czy jest zalogowany
       if (!authToken) {
         console.error("Nie można umówić wizyty. Brak autoryzacji.");
         return;
       }
 
-      // Utwórz obiekt danych do wysłania
       const appointmentData = {
         doctorId: selectedDoctor?.id_lekarza,
         patientToken: authToken,
@@ -153,7 +149,6 @@ function MainPage() {
         time: selectedTime,
       };
 
-      // Wyślij zapytanie do API w celu umówienia wizyty
       const response = await axios.post(
         "http://localhost/api/umow_wizyte.php",
         appointmentData
